@@ -8,7 +8,7 @@ export default function CampaignTabLayout({
     params,
 }: {
     children: React.ReactNode;
-    params: { id: string };
+    params: any;
 }) {
     const { id } = params;
     const router = useRouter();
