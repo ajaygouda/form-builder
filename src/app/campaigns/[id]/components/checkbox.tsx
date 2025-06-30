@@ -1,9 +1,9 @@
 "use client"
 import React, { useState } from 'react'
 import FieldAction from './fieldAction';
-import { IOption } from '@/types/ICampaign';
+import { IFieldAction, IOption } from '@/types/ICampaign';
 
-const CheckBoxComponent = (props: any) => {
+const CheckBoxComponent = (props: IFieldAction) => {
     const [options, setOptions] = useState<IOption[]>([]);
 
     const handleAdd = () => {
