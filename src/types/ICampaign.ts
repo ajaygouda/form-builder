@@ -17,7 +17,7 @@ export interface IField {
 
 export interface IFieldAction {
     formFields: IFormField[],
-    handleDelete(field: IField, index: number): void
+    handleDelete(field: IFormField, index: number): void
     index: number,
     field: IFormField,
     fieldType?: string
