@@ -71,7 +71,7 @@ export default function FieldList(props: any) {
                         <div onClick={() => {
                             props.handleSelect(field)
                             setOpen(false);
-                        }} className={`flex justify-between p-4 pt-3 pb-3 hover:bg-gray-100 cursor-pointer border-b-1 border-gray-200 last:border-b-0`} key={field.id}><span className='flex text-sm justify-between items-center gap-2'><svg xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 -960 960 960" width="18px" fill="#1f1f1f">{field.iconPath}</svg>{field.name}</span></div>
+                        }} className={`flex justify-between p-4 pt-3 pb-3 hover:bg-gray-100 cursor-pointer border-b-1 border-gray-200 last:border-b-0`} key={field.id}><span className='flex text-sm justify-between items-center gap-2'><svg xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 -960 960 960" width="18px" fill="#1f1f1f"><path d={field.iconPath}/></svg>{field.name}</span></div>
                     ))}
                 </div>
             </>
