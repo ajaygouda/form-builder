@@ -1,7 +1,6 @@
 import React from 'react'
 
 const FieldAction = (props: any) => {
-    console.log(props.formFields, props.index)
     return (
         <div className="flex items-center justify-between p-6 pt-3 pb-3 border-t border-gray-200">
             <h1 className='text-gray-700 font-medium'>{props.fieldType}</h1>

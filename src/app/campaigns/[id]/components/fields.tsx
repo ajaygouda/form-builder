@@ -2,12 +2,12 @@
 import { useState, useRef, useEffect } from "react";
 
 export default function FieldList(props: any) {
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState<boolean>(false);
     const menuRef = useRef<HTMLDivElement>(null);
     const dropdownRef = useRef<HTMLDivElement>(null);
-    const [isAbove, setIsAbove] = useState(false);
+    const [isAbove, setIsAbove] = useState<boolean>(false);
 
-    const fields: any = [
+    const fields: any[] = [
         { id: 1, name: "Text", iconPath: <path d="M160-360v-80h400v80H160Zm0-160v-80h640v80H160Z" /> },
         { id: 2, name: "Paragraph", iconPath: <path d="M160-200v-80h400v80H160Zm0-160v-80h640v80H160Zm0-160v-80h640v80H160Zm0-160v-80h640v80H160Z" /> },
         { id: 3, name: "Multiple Choice", iconPath: <path d="M480-280q83 0 141.5-58.5T680-480q0-83-58.5-141.5T480-680q-83 0-141.5 58.5T280-480q0 83 58.5 141.5T480-280Zm0 200q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q134 0 227-93t93-227q0-134-93-227t-227-93q-134 0-227 93t-93 227q0 134 93 227t227 93Z" /> },
@@ -21,9 +21,9 @@ export default function FieldList(props: any) {
     // Close on outside click
     useEffect(() => {
         if (open && dropdownRef.current) {
-            const rect = dropdownRef.current.getBoundingClientRect();
-            const spaceBelow = window.innerHeight - rect.top;
-            const dropdownHeight = 360; // approximate height of dropdown
+            const rect:any = dropdownRef.current.getBoundingClientRect();
+            const spaceBelow:any = window.innerHeight - rect.top;
+            const dropdownHeight:any = 360; // approximate height of dropdown
             setIsAbove(spaceBelow < dropdownHeight);
         }
 

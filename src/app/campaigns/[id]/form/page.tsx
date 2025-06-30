@@ -13,13 +13,12 @@ const page = () => {
     const [formFields, setFormFields] = useState<any[]>([]);
 
     const handleSelect = (field: any) => {
-        setFormFields((prev) => [...prev, { id: field.id, order: prev.length + 1 }]);
+        setFormFields((prev:any) => [...prev, { id: field.id, order: prev.length + 1 }]);
     };
 
     const handleDelete = (field: any, fieldIndex: number) => {
-        setFormFields((prev) => prev.filter((item, index) => index !== fieldIndex));
+        setFormFields((prev:any) => prev.filter((item:any, index:number) => index !== fieldIndex));
     };
-    console.log(formFields)
 
     return (
         <div className="grid grid-cols-2 md:grid-cols-4 gap-[20px]">
@@ -31,7 +30,7 @@ const page = () => {
                 </div>
                 <FieldList handleSelect={handleSelect} />
                 {[...formFields]
-                    .sort((a, b) => a.order - b.order).map((field, index) => (
+                    .sort((a:any, b:any) => a.order - b.order).map((field:any, index:number) => (
                         <div key={index} >
                             {field.id === 1 && <TextComponent formFields={formFields} field={field} index={index} handleDelete={handleDelete} />}
                             {field.id === 2 && <ParagraphComponent formFields={formFields} field={field} index={index} handleDelete={handleDelete} />}

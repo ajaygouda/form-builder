@@ -7,20 +7,20 @@ const MultiChoiceComponent = (props:any) => {
 
     const handleAdd = () => {
         setOptions((prev: any[]) => {
-            const nextId = prev.length > 0 ? prev.at(-1).id + 1 : 1;
+            const nextId:any = prev.length > 0 ? prev.at(-1).id + 1 : 1;
             return [...prev, { id: nextId, label: `Option ${nextId}` }];
         });
     };
 
     const handleDelete = (optionId: number) => {
         setOptions((prev: any[]) => {
-            return prev.filter((item) => item.id !== optionId)
+            return prev.filter((item:any) => item.id !== optionId)
         });
     };
 
     const handleChange = (optionId: number, value: string) => {
         setOptions((prev: any[]) => {
-            return prev.map((item) => item.id === optionId ? { ...item, label: value } : item)
+            return prev.map((item:any) => item.id === optionId ? { ...item, label: value } : item)
         });
     };
    

@@ -10,8 +10,8 @@ export default function CampaignTabLayout({ children, params }: {
 }) {
 
     const { id } = use(params); 
-    const router = useRouter();
-    const [activeTab, setActiveTab] = useState(1);
+    const router:any = useRouter();
+    const [activeTab, setActiveTab] = useState<any>(1);
 
     const handleTab = (tab: any) => {
         setActiveTab(tab.id)
