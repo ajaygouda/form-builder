@@ -12,13 +12,20 @@ export interface IFormField {
 export interface IField {
     id: number,
     name: string,
-    iconPath: any
+    iconPath: string
 }
 
 export interface IFieldAction {
-    formFields: any,
-    handleDelete(field: any, index: number): void
+    formFields: IFormField[],
+    handleDelete(field: IField, index: number): void
     index: number,
-    field: any,
+    field: IFormField,
     fieldType?: string
+}
+
+export interface ICampaign {
+    id: number,
+    title: string,
+    description: string,
+    status: IOption
 }

@@ -1,6 +1,7 @@
 "use client"
 
 import { IOption } from "@/types/ICampaign";
+import Link from "next/link";
 
 export const Navbar = (props: any) => {
     const tabs:IOption[] = [
@@ -10,11 +11,11 @@ export const Navbar = (props: any) => {
     ];
     return (
         <div className="flex justify-between items-center h-18 py-3">
-            <a href="/campaigns">
+            <Link href="/campaigns">
                 <h1 className="text-xl font-medium flex items-center gap-4">
                     <svg className="rotate-180" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M647-440H160v-80h487L423-744l57-56 320 320-320 320-57-56 224-224Z" /></svg>
                     New Campaign</h1>
-            </a>
+            </Link>
 
             <div className="w-80">
                 {/* Tabs */}

@@ -67,7 +67,7 @@ export default function FieldList(props: any) {
                     className={`absolute left-1/2 z-50 -translate-x-1/2 w-56 bg-white dark:bg-gray-800 shadow-md border border-gray-200 dark:border-gray-700 rounded-lg ${isAbove ? "bottom-full mb-2" : "top-full mt-2"
                         }`}
                 >
-                    {FIELDS.map((field: IField, index: number) => (
+                    {FIELDS.map((field: IField) => (
                         <div onClick={() => {
                             props.handleSelect(field)
                             setOpen(false);

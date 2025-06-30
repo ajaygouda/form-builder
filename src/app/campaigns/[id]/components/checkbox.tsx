@@ -7,7 +7,7 @@ const CheckBoxComponent = (props: IFieldAction) => {
     const [options, setOptions] = useState<IOption[]>([]);
 
     const handleAdd = () => {
-        setOptions((prev: IOption[] | any) => {
+        setOptions((prev: IOption[]) => {
             const nextId = prev.length > 0 ? prev.at(-1).id + 1 : 1;
             return [...prev, { id: nextId, label: `Option ${nextId}` }];
         });

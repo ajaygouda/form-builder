@@ -1,6 +1,7 @@
 import { Navbar } from "@/components/navbar"
+import { ICampaign } from "@/types/ICampaign"
 
-const campaigns: any = [
+const campaigns: ICampaign[] = [
     {
         id: 1,
         title: "Annual function 2025",
@@ -44,7 +45,7 @@ const page = () => {
                         <p className="font-normal line-clamp-2 text-sm text-gray-500 dark:text-gray-400 mt-3">New Campaign</p>
                     </div>
                 </a>
-                {campaigns?.map((item: any, index: any) => (
+                {campaigns?.map((item: ICampaign, index: number) => (
                     <a key={index} href={`/campaigns/${item.id}`} className="p-6 bg-white border border-gray-200 rounded-sm dark:bg-gray-800 dark:border-gray-700 block p-6 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
                         <h5 className="mb-2 text-xl line-clamp-1 font-medium tracking-tight text-gray-900 dark:text-white">{item.title}</h5>
                         <p className="font-normal line-clamp-2 text-sm text-gray-500 dark:text-gray-400">{item.description}</p>
