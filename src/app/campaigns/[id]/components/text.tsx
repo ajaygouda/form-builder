@@ -1,7 +1,8 @@
 import React from 'react'
 import FieldAction from './fieldAction';
+import { IFieldAction } from '@/types/ICampaign';
 
-const TextComponent = (props: any) => {
+const TextComponent = (props: IFieldAction) => {
     return (
         <div className='bg-white border border-gray-200 rounded-sm dark:bg-gray-800 dark:border-gray-700 block bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700'>
             <div className='p-6'>

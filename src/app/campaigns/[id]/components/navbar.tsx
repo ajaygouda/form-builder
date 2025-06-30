@@ -1,9 +1,9 @@
 "use client"
 
-import { useState } from "react";
+import { IOption } from "@/types/ICampaign";
 
 export const Navbar = (props: any) => {
-    const tabs:any[] = [
+    const tabs:IOption[] = [
         { id: 1, label: 'Form' },
         { id: 2, label: 'Preview' },
         { id: 3, label: 'Report' },
@@ -19,7 +19,7 @@ export const Navbar = (props: any) => {
             <div className="w-80">
                 {/* Tabs */}
                 <ul className="hidden text-xs font-medium text-center border border-gray-200 text-gray-500 rounded-sm sm:flex dark:divide-gray-700 dark:text-gray-400">
-                    {tabs.map((tab:any, index:number) => (
+                    {tabs.map((tab:IOption, index:number) => (
                         <li key={tab.id} className="w-full focus-within:z-10">
                             <button
                                 onClick={() => props.handleTab(tab)}

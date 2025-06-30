@@ -6,18 +6,18 @@ import TextComponent from '../components/text'
 import ParagraphComponent from '../components/paragraph'
 import MultiChoiceComponent from '../components/multiChoice'
 import CheckBoxComponent from '../components/checkbox'
-
+import { IField, IFormField } from '@/types/ICampaign'
 
 
 const page = () => {
-    const [formFields, setFormFields] = useState<any[]>([]);
+    const [formFields, setFormFields] = useState<IFormField[]>([]);
 
-    const handleSelect = (field: any) => {
-        setFormFields((prev:any) => [...prev, { id: field.id, order: prev.length + 1 }]);
+    const handleSelect = (field: IField) => {
+        setFormFields((prev:IFormField[] | any) => [...prev, { id: field.id, order: prev.length + 1 }]);
     };
 
-    const handleDelete = (field: any, fieldIndex: number) => {
-        setFormFields((prev:any) => prev.filter((item:any, index:number) => index !== fieldIndex));
+    const handleDelete = (field: IField, fieldIndex: number) => {
+        setFormFields((prev:IFormField[]) => prev.filter((item:IFormField, index:number) => index !== fieldIndex));
     };
 
     return (
@@ -30,7 +30,7 @@ const page = () => {
                 </div>
                 <FieldList handleSelect={handleSelect} />
                 {[...formFields]
-                    .sort((a:any, b:any) => a.order - b.order).map((field:any, index:number) => (
+                    .sort((a:any, b:any) => a.order - b.order).map((field:IFormField, index:number) => (
                         <div key={index} >
                             {field.id === 1 && <TextComponent formFields={formFields} field={field} index={index} handleDelete={handleDelete} />}
                             {field.id === 2 && <ParagraphComponent formFields={formFields} field={field} index={index} handleDelete={handleDelete} />}

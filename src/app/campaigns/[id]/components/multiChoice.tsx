@@ -1,25 +1,26 @@
 "use client"
 import React, { useState } from 'react'
 import FieldAction from './fieldAction';
+import { IOption } from '@/types/ICampaign';
 
 const MultiChoiceComponent = (props:any) => {
-    const [options, setOptions] = useState<any[]>([]);
+    const [options, setOptions] = useState<IOption[]>([]);
 
     const handleAdd = () => {
-        setOptions((prev: any[]) => {
-            const nextId:any = prev.length > 0 ? prev.at(-1).id + 1 : 1;
+        setOptions((prev: IOption[] | any) => {
+            const nextId:number = prev.length > 0 ? prev.at(-1).id + 1 : 1;
             return [...prev, { id: nextId, label: `Option ${nextId}` }];
         });
     };
 
     const handleDelete = (optionId: number) => {
-        setOptions((prev: any[]) => {
+        setOptions((prev: IOption[]) => {
             return prev.filter((item:any) => item.id !== optionId)
         });
     };
 
     const handleChange = (optionId: number, value: string) => {
-        setOptions((prev: any[]) => {
+        setOptions((prev: IOption[]) => {
             return prev.map((item:any) => item.id === optionId ? { ...item, label: value } : item)
         });
     };
@@ -44,10 +45,10 @@ const MultiChoiceComponent = (props:any) => {
                     />
                 </div>
                 <div>
-                    {options.map((option: any, index: number) => (
+                    {options.map((option: IOption, index: number) => (
                         <div key={index} className="flex items-center mb-4">
-                            <input disabled id={option.id} type="radio" value="" name="default-radio" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                            <input onChange={(e) => handleChange(option.id, e.target.value)} value={option.label} type="text" id={option.id} placeholder={option.label} required className="ml-2 w-full border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 p-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" />
+                            <input disabled id={`${option.id}`} type="radio" value="" name="default-radio" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                            <input onChange={(e) => handleChange(option.id, e.target.value)} value={option.label} type="text" id={`${option.id}`} placeholder={option.label} required className="ml-2 w-full border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 p-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white" />
                             <div onClick={() => handleDelete(option.id)} className='ml-2 cursor-pointer bg-gray-100 h-7 w-7 flex items-center justify-center rounded-full relative z-10'>
                                 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="m336-280-56-56 144-144-144-143 56-56 144 144 143-144 56 56-144 143 144 144-56 56-143-144-144 144Z" /></svg>
                             </div>
