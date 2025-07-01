@@ -6,6 +6,7 @@ export interface IOption {
 
 export interface IFormField {
     id: number,
+    fieldId:number,
     order: string,
 }
 

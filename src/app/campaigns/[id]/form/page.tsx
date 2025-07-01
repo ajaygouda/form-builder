@@ -1,5 +1,5 @@
 "use client"
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import FieldOrder from '../components/fieldOrder'
 import FieldList from '../components/fields'
 import TextComponent from '../components/text'
@@ -12,17 +12,39 @@ import { IField, IFormField } from '@/types/ICampaign'
 const page = () => {
     const [formFields, setFormFields] = useState<IFormField[]>([]);
 
-    const handleSelect = (field: IField) => {
-        setFormFields((prev:IFormField[] | any) => [...prev, { id: field.id, order: prev.length + 1 }]);
+    const handleSelect = (field: IField, insertAfterIndex: number) => {
+        setFormFields((prev: any[]) => {
+            const uniqueId = Date.now(); 
+            const newField = { id: uniqueId, fieldId: field.id, order: 0 };
+
+            // Insert at index + 1
+            const updated = [
+                ...prev.slice(0, insertAfterIndex + 1),
+                newField,
+                ...prev.slice(insertAfterIndex + 1)
+            ];
+
+            // Recalculate order
+            const reordered = updated.map((f, i) => ({ ...f, order: i + 1 }));
+
+            return reordered;
+        });
     };
 
+
+
+
     const handleDelete = (field: IField, fieldIndex: number) => {
-        setFormFields((prev:IFormField[]) => prev.filter((item:IFormField, index:number) => index !== fieldIndex));
+        setFormFields((prev: IFormField[]) => prev.filter((item: IFormField, index: number) => index !== fieldIndex));
     };
+
+    const handleReorder = (reorderData: any) => {
+        setFormFields(reorderData)
+    }
 
     return (
         <div className="grid grid-cols-2 md:grid-cols-4 gap-[20px]">
-            <div className="col-span-1"><FieldOrder formFields={formFields} /></div>
+            <div className="col-span-1"><FieldOrder formFields={formFields} handleReorder={handleReorder} /></div>
             <div className='col-span-1 md:col-span-3 mb-20'>
                 <div className='p-6 bg-white border border-gray-200 rounded-sm dark:bg-gray-800 dark:border-gray-700 block p-6 bg-white border border-gray-200 rounded-lg dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700'>
                     <input type="text" id="text" className="mb-5 border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="New Campaign" required />
@@ -30,13 +52,13 @@ const page = () => {
                 </div>
                 <FieldList handleSelect={handleSelect} />
                 {[...formFields]
-                    .sort((a:any, b:any) => a.order - b.order).map((field:IFormField, index:number) => (
+                    .map((field: IFormField, index: number) => (
                         <div key={index} >
-                            {field.id === 1 && <TextComponent formFields={formFields} field={field} index={index} handleDelete={handleDelete} />}
-                            {field.id === 2 && <ParagraphComponent formFields={formFields} field={field} index={index} handleDelete={handleDelete} />}
-                            {field.id === 3 && <MultiChoiceComponent formFields={formFields} field={field} index={index} handleDelete={handleDelete} />}
-                            {field.id === 4 && <CheckBoxComponent formFields={formFields} field={field} index={index} handleDelete={handleDelete} />}
-                            <FieldList handleSelect={handleSelect} />
+                            {field.fieldId === 1 && <TextComponent formFields={formFields} field={field} index={index} handleDelete={handleDelete} />}
+                            {field.fieldId === 2 && <ParagraphComponent formFields={formFields} field={field} index={index} handleDelete={handleDelete} />}
+                            {field.fieldId === 3 && <MultiChoiceComponent formFields={formFields} field={field} index={index} handleDelete={handleDelete} />}
+                            {field.fieldId === 4 && <CheckBoxComponent formFields={formFields} field={field} index={index} handleDelete={handleDelete} />}
+                            <FieldList handleSelect={(f: any) => handleSelect(f, index)} />
                         </div>
                     ))}
             </div>
